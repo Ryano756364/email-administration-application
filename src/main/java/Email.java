@@ -4,8 +4,10 @@ public class Email {
     private String firstName;
     private String lastName;
     private String password;
-    private int defaultPasswordLength = 10;
+    private int defaultPasswordLength = 16;
     private String department;
+    private String email;
+    private String companySuffix = "ryanpodell.com";
     private int mailboxCapacity;
     private String alternateEmail;
 
@@ -17,28 +19,35 @@ public class Email {
 
         //Now call a private method asking for dept and returning department
         this.department = setDepartment();
-        System.out.println("Department chosen is: " + this.department);
+        System.out.println(this.department != null ? "Department chosen is: " + this.department : "No department chosen.");
 
         // Call a private method that returns a random password
         this.password = randomPassword(defaultPasswordLength);
-        System.out.println("Your default password is " + this.password);
+        System.out.println("Your default password is: " + this.password);
+
+        //Combine elements to generate email
+        email = firstName.toLowerCase() + "." +
+                lastName.toLowerCase() + "@" +
+                (department != null ? department.toLowerCase() + "." : "") +
+                companySuffix;
+        System.out.println("Your email is: " + email);
     }
 
     //Need to ask what department they are in
     private String setDepartment(){
         System.out.println("""
                 Enter the department code for employee
-                1 for Sales\s
+                1 for Sales
                 2 for Development
                 3 for Accounting
-                0 for none\s""");
+                0 for none""");
         Scanner input = new Scanner(System.in);
         int deptChoice = input.nextInt();
         return switch (deptChoice) {
             case 1 -> "Sales";
             case 2 -> "Development";
             case 3 -> "Accounting";
-            default -> "";
+            default -> null;
         };
     }
 
@@ -55,6 +64,7 @@ public class Email {
     }
 
     //Set mailbox capacity
+
 
     //Set an alternate email
 
