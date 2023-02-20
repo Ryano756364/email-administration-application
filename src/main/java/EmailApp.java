@@ -7,6 +7,6 @@ public class EmailApp {
         email1.setMailboxCapacity(2000);
         email1.setAlternateEmail("testEmail@junk.com");
 
-
+        System.out.println(email1.showInfo());
     }
 }

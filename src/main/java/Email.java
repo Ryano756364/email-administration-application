@@ -23,14 +23,12 @@ public class Email {
 
         // Call a private method that returns a random password
         this.password = randomPassword(defaultPasswordLength);
-        System.out.println("Your default password is: " + this.password);
 
         //Combine elements to generate email
         email = firstName.toLowerCase() + "." +
                 lastName.toLowerCase() + "@" +
                 (department != null ? department.toLowerCase() + "." : "") +
                 companySuffix;
-        System.out.println("Your email is: " + email);
     }
 
     //Need to ask what department they are in
@@ -73,9 +71,25 @@ public class Email {
         this.alternateEmail = altEmail; //this. not necessarily needed since there's no parameter ambiguity
     }
 
-    //Ability to change password
+    //Other public methods
     public void changePassword(String password){
         this.password = password;
     }
+    public int getMailboxCapacity(){
+        return mailboxCapacity;
+    }
+    public String getAlternateEmail(){
+        return alternateEmail;
+    }
+    public String getPassword(){
+        return password;
+    }
 
+    //Main show info method
+    public String showInfo(){
+        return "\nDisplay name: " + firstName + " " + lastName +
+                "\nCompany Email: " + email +
+                "\nYour default password is: " + this.password +
+                "\nMailbox capacity: " + mailboxCapacity + "mb";
+    }
 }
